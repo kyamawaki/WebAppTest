@@ -12,32 +12,41 @@
 
 @using (Html.BeginForm("Save", "Test", FormMethod.Post))
 {
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayName("Name")
-            </th>
-            <th>
-                @Html.DisplayName("Value")
-            </th>
-            <th></th>
-        </tr>
-
-        @for(int i=0; i<Model.TestTables.Count; i++)
-        {
-    <tr>
-        <td>
-            @Html.TextBoxFor(m => Model.TestTables[i].Name)
-        </td>
-        <td>
-            @Html.TextBoxFor(m => Model.TestTables[i].Value)
-        </td>
-    </tr>
-
-        }
-    </table>
-
-
     @Html.AntiForgeryToken()
+
+    <dl>
+        <dd id="aaa">
+            @Html.LabelFor(m => m.Value1, htmlAttributes: new { @id = "v2" }) :
+            <span id="v1">@Html.EditorFor(m => m.Value1)</span>
+        </dd>
+        <dd>
+            @Html.DisplayNameFor(m => m.List) :
+            <!--            @Html.DropDownList("List", null, htmlAttributes: new { @id = "list", @class = "form-control", onChange = "changeItem()" })-->
+            @Html.DropDownList("List", null, htmlAttributes: new { @id = "list", @class = "form-control" })
+        </dd>
+    </dl>
+
+
     <input type="submit" />
 }
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<!--
+<script type="text/javascript">
+    function changeItem() {
+        var val = $("#list").val();
+        $("#Value1").val(val);
+        console.log(val);
+        $("#Value1").attr("max", "5");
+        //$("#aaa").hide();
+        //$("#v1").text("ok");
+        //$("#v1").hide();
+        //$("#v2").hide();
+    }
+
+</script>
+-->
