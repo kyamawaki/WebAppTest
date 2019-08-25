@@ -14,17 +14,22 @@
 {
     @Html.AntiForgeryToken()
 
-    <dl>
-        <dd id="aaa">
-            @Html.LabelFor(m => m.Value1, htmlAttributes: new { @id = "v2" }) :
-            <span id="v1">@Html.EditorFor(m => m.Value1)</span>
-        </dd>
-        <dd>
-            @Html.DisplayNameFor(m => m.List) :
-            <!--            @Html.DropDownList("List", null, htmlAttributes: new { @id = "list", @class = "form-control", onChange = "changeItem()" })-->
-            @Html.DropDownList("List", null, htmlAttributes: new { @id = "list", @class = "form-control" })
-        </dd>
-    </dl>
+<dl>
+    <dd id="aaa">
+        @Html.LabelFor(m => m.Value1) :
+        @Html.EditorFor(m => m.Value1)
+        @Html.ValidationMessageFor(m => m.Value1)
+    </dd>
+    <dd id="aaa">
+        @Html.LabelFor(m => m.Value2) :
+        @Html.EditorFor(m => m.Value2)
+        @Html.ValidationMessageFor(m => m.Value2)
+    </dd>
+    <dd>
+        @Html.DisplayNameFor(m => m.List) :
+        @Html.DropDownList("List", null, htmlAttributes: new { @id = "list", @class = "form-control", onChange = "changeItem()" })
+    </dd>
+</dl>
 
 
     <input type="submit" />
@@ -35,18 +40,23 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-<!--
 <script type="text/javascript">
     function changeItem() {
         var val = $("#list").val();
-        $("#Value1").val(val);
+        if (val == 5) {
+            $("#Value1").hide();
+            $("#Value2").show();
+        } else {
+            $("#Value1").show();
+            $("#Value2").hide();
+        }
+        //$("#Value1").val(val);
         console.log(val);
-        $("#Value1").attr("max", "5");
+        //$("#Value1").attr("data-val-range-max", 5);
+        //$("#Value1").attr("data-val-range", "NOR NOR");
         //$("#aaa").hide();
         //$("#v1").text("ok");
         //$("#v1").hide();
         //$("#v2").hide();
     }
-
 </script>
--->

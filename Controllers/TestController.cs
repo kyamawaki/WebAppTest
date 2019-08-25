@@ -17,8 +17,14 @@ namespace WebAppTest.Controllers
 
     public class Sample
     {
-        [Range(1,10, ErrorMessage ="NO")]
+        [Required]
+        [Range(0,10, ErrorMessage ="Non Non")]
         public int Value1 { get; set; }
+
+        [Required]
+        [Range(0, 5, ErrorMessage = "Non2 Non2")]
+        public int Value2 { get; set; }
+
         public List<string> List { get; set; }
 
         public Sample()
